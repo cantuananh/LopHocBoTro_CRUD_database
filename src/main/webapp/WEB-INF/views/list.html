@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>List cakes</title>
+</head>
+<body>
+<h1>List cake</h1>
+<form action="/cakes/search">
+    <input type="text" name="keyword">
+    <button type="submit">Search</button>
+</form>
+<button><a th:href="@{/cakes/add-cake}">Create</a></button>
+<table border="1px">
+    <tr>
+        <td>ID</td>
+        <td>Details</td>
+        <td>Type</td>
+        <td>Price</td>
+        <td>Status</td>
+        <td>Action</td>
+    </tr>
+    <tr th:each="cake : ${cakes}">
+        <td th:text="${cake.id}"></td>
+        <td th:text="${cake.details}"></td>
+        <td th:text="${cake.type}"></td>
+        <td th:text="${cake.price}"></td>
+        <td th:text="${cake.status ? 'Con hang' : 'Het hang'}"></td>
+        <td>
+            <button><a th:href="@{'/cakes/edit/' + ${cake.id}}">Edit</a></button>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
